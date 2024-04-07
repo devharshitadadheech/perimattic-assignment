@@ -1,0 +1,12 @@
+.capitalize {
+    text-transform: capitalize;
+}
+
+.navbar {
+    background-color: #beebff !important;
+}
+
+.error {
+    border-color: red !important;
+    color: red !important;
+}
