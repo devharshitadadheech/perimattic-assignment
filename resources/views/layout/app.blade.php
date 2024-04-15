@@ -14,7 +14,7 @@
         <div class="content">
             @include('layout.notifications')
             <div class="container-fluid">
-                <h4 class="mb-5">@yield('heading')</h4>
+                <h2 class="mt-5 mb-0 fw-bold" style="color: #060c21;">@yield('heading')</h4>
                 @yield('content')
             </div>
         </div>
