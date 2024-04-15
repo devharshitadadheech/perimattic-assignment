@@ -10,9 +10,10 @@
 @endif
 @if (session('success'))
     <div class="alert alert-success alert-dismissible fade show capitalize" role="alert">
-        <ul>
-            <li>{{ session('success') }}</li>
-        </ul>
+        {{ session('success') }}
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
 @endif
+<div class="alert alert-danger fade show capitalize" style="display: none;" role="alert">
+    <span id="content"></span>
+</div>
