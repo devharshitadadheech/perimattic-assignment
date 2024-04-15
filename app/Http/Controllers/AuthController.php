@@ -51,6 +51,32 @@ class AuthController extends Controller
 
     public function createUser(Request $request)
     {
-        $validator = Validator::make($request->only(['name', 'email', 'password', 'password_confirmation']));
+        // return $request;
+        $validator = Validator::make($request->only(['name', 'email', 'password', 'password_confirmation']), [
+            'name' => 'required|min:3|max:50',
+            'email' => 'required|email',
+            'password' => 'required|confirmed|min:8',
+            'password_confirmation' => 'min:8'
+        ]);
+        if ($validator->fails())
+            return redirect()->back()->withErrors($validator->errors());
+        $password = $request->password;
+        $hashed = Hash::make($password);
+        $createUser = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => $hashed
+        ]);
+        $this->checkUser($createUser);
+        return redirect()->route('login')->with('success', 'user added successfull');
+    }
+
+    public function checkUser($output)
+    {
+        $users = User::all();
+        foreach ($users as $user) {
+            $output->info("running info check for site $user->email");
+            $this->checkSite($user);
+        }
     }
 }
