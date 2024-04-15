@@ -67,15 +67,13 @@ class AuthController extends Controller
             'email' => $request->email,
             'password' => $hashed
         ]);
-        $this->checkUser($createUser);
-        return redirect()->route('login')->with('success', 'user added successfull');
+        return redirect()->route('login')->with('success', 'registration completed successfully');
     }
 
     public function checkUser($output)
     {
         $users = User::all();
         foreach ($users as $user) {
-            $output->info("running info check for site $user->email");
             $this->checkSite($user);
         }
     }
