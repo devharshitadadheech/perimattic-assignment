@@ -26,6 +26,7 @@ class CronExpressionRule implements Rule
      */
     public function passes($attribute, $value)
     {
+        if(!$value) return false;
         try {
             new CronExpression($value);
             return true;
